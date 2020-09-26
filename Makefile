@@ -23,7 +23,7 @@ checkout:
 rougify:
 	@rougify style github | sass-convert --to scss > _sass/highlight.scss
 
-install: hooks
+install:
 	@gem install jekyll bundler
 	@npm install
 	@bundle install
