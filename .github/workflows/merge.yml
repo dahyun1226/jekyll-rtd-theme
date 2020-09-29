@@ -1,0 +1,17 @@
+name: Merge release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@main
+      with:
+        ref: master
+    - name: Merge branch v2 to master
+      run: |
+        git remote set-url origin "https://${GITHUB_ACTOR}:${{ secrets.AUTH_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+        git pull origin v2 && git push
